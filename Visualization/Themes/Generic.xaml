@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:visualization="clr-namespace:Visualization">
+
+    <Style TargetType="{x:Type visualization:RailwayVisualizerControl}" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type visualization:RailwayVisualizerControl}">
+                    <!-- 
+                    we should use a more complex panel with its own coordinate system and zoom level,
+                    but to keep things  simple we will draw elements at their original coordinates.
+                    -->
+                    <ScrollViewer
+                        HorizontalScrollBarVisibility="Auto" >
+                        <Grid
+                            x:Name="PART_ElementsPanel"
+                            Margin="90"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type visualization:RailwayBaseElement}" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type visualization:RailwayBaseElement}">
+                    <Path StrokeThickness="3" Stroke="{TemplateBinding Color}" Fill="{TemplateBinding Color}" Data="{TemplateBinding Geometry}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type visualization:RailwayPark}" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type visualization:RailwayPark}">
+                    <Canvas>
+                        <Path Fill="{TemplateBinding Color}" Data="{TemplateBinding Geometry}" />
+                        <TextBlock
+                            Canvas.Top="{Binding LabelPosition.Y, RelativeSource={RelativeSource TemplatedParent}}"
+                            Canvas.Left="{Binding LabelPosition.X, RelativeSource={RelativeSource TemplatedParent}}"
+                            Text="{TemplateBinding Label}" 
+                            Foreground="{TemplateBinding LabelColor}"
+                            FontSize="27"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
