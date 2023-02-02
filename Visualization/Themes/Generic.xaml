@@ -29,14 +29,29 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="DefaultPathStyle" TargetType="{x:Type Path}">
+        <Setter Property="StrokeThickness" Value="3" />
+    </Style>
     <Style TargetType="{x:Type visualization:RailwayBaseElement}" >
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type visualization:RailwayBaseElement}">
-                    <Path StrokeThickness="3" Stroke="{TemplateBinding Color}" Fill="{TemplateBinding Color}" Data="{TemplateBinding Geometry}" />
+                    <Path
+                        Style="{StaticResource DefaultPathStyle}"
+                        Stroke="{TemplateBinding Color}"
+                        Fill="{TemplateBinding Color}"
+                        Data="{TemplateBinding Geometry}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="RailwayParkLabelStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="27" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
     <Style TargetType="{x:Type visualization:RailwayPark}" >
         <Setter Property="Template">
@@ -44,16 +59,13 @@
                 <ControlTemplate TargetType="{x:Type visualization:RailwayPark}">
                     <Canvas>
                         <Path Fill="{TemplateBinding Color}" Data="{TemplateBinding Geometry}" />
-                        <TextBlock
+                            <TextBlock
+                            Style="{StaticResource RailwayParkLabelStyle}"
                             Canvas.Top="{Binding LabelPosition.Y, RelativeSource={RelativeSource TemplatedParent}}"
                             Canvas.Left="{Binding LabelPosition.X, RelativeSource={RelativeSource TemplatedParent}}"
                             Text="{TemplateBinding Label}" 
-                            Foreground="{TemplateBinding LabelColor}"
-                            FontSize="27"
-                            FontWeight="SemiBold"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"/>
-                    </Canvas>
+                            Foreground="{TemplateBinding LabelColor}" />
+                        </Canvas>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
