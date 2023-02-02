@@ -41,21 +41,7 @@ namespace Visualization {
         }
         
         static Rect GetBoundedRect(IEnumerable<Point> polygon) {
-            using(var enumerator = polygon.GetEnumerator()) {
-                enumerator.MoveNext();
-                var left = enumerator.Current.X;
-                var right = enumerator.Current.X;
-                var top = enumerator.Current.Y;
-                var bottom = enumerator.Current.Y;
-
-                while(enumerator.MoveNext()) {
-                    left = Math.Min(left, enumerator.Current.X);
-                    right = Math.Max(right, enumerator.Current.X);
-                    top = Math.Min(top, enumerator.Current.Y);
-                    bottom = Math.Max(bottom, enumerator.Current.Y);
-                }
-                return new Rect(new Point(left, top), new Point(right, bottom));
-            }
+            return polygon.Aggregate(Rect.Empty, Rect.Union);
         }
     }
 }
