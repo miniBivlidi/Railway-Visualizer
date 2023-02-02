@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Core {
     public static class GraphCyclesFinder {
+        //for simplicity and demonstration of the algorithm, we use simple tuples with T type
+        //but in real project we must avoid call the Equals method for custom T type (because of boxing for a struct)
+        //and support custom IEqualityComparer
         public static IEnumerable<IEnumerable<T>> FindCycles<T>(IEnumerable<(T, T)> undirectedEdges) {
             if(undirectedEdges == null || !undirectedEdges.Any())
                 return Enumerable.Empty<IEnumerable<T>>();
