@@ -211,10 +211,9 @@ namespace Visualization {
         }
         void GenerateVisualElement<T>(object source, Func<object, T> createVisual, IList<T> collection) where T : RailwayBaseElement  {
             collection.Clear();
-            var elementType = typeof(T);
             for(int i = ElementPanel.Children.Count -1; i >= 0; i--) {
                 var visual = ElementPanel.Children[i];
-                if(visual.GetType().IsAssignableFrom(elementType))
+                if(visual is T)
                     ElementPanel.Children.RemoveAt(i);
             }
             //we should work with different types of collections and correctly respond to changes of properties of a collection or an element,
@@ -224,7 +223,7 @@ namespace Visualization {
             //we should have a flexible way to organize ZOrder of the element
             //but to keep things simple,
             //we place element in the predefined order - Parks, Lines, Points.
-            var visualIndex = GeVisualElementsStartIndex(ElementPanel, elementType);
+            var visualIndex = GeVisualElementsStartIndex(ElementPanel, typeof(T));
             foreach(var visual in ((IEnumerable<object>)source).Select(createVisual)) {
                 collection.Add(visual);
                 ElementPanel.Children.Insert(visualIndex, visual);
