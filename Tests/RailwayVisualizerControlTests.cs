@@ -24,28 +24,28 @@ namespace Tests {
             Control = null;
         }
 
-        [Test]
+        [Test, Ignore("TODO")]
         public void VisualElementCount() {
             Assert.Fail("Test non complete");
         }
-        [Test]
+        [Test, Ignore("TODO")]
         public void LinePositions() {
             Assert.Fail("Test non complete");
         }
-        [Test]
+        [Test, Ignore("TODO")]
         public void ParkPositions() {
             //generate or set via property
             Assert.Fail("Test non complete");
         }
-        [Test]
+        [Test, Ignore("TODO")]
         public void PointPositions() {
             Assert.Fail("Test non complete");
         }
-        [Test]
+        [Test, Ignore("TODO")]
         public void VisualElementGeometry() {
             Assert.Fail("Test non complete");
         }
-        [Test]
+        [Test, Ignore("TODO")]
         public void VisualElementZOrder() {
             Assert.Fail("Test non complete");
         }
